@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { SVGProps } from 'react'
 
 
-const SidebarRow = () => {
+interface Props {
+    Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
+    title: string
+}
+
+function SidebarRow ({Icon, title}: Props) {
   return (
-    <div>SidebarRow</div>
+    <div>
+        <Icon className='h-6 w-6'/>
+        <p>{title}</p>
+    </div>
   )
 }
 
