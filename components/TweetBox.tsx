@@ -28,7 +28,7 @@ const Tweetbox = () => {
               <CalendarIcon className="h-5 w-5" />
               <LocationMarkerIcon className="h-5 w-5" />
             </div>
-            <button>Tweet</button>
+            <button className="bg-twitter px-5 py-2 font-bold text-white rounded-full">Tweet</button>
           </div>
         </form>
       </div>
