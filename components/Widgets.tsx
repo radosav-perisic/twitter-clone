@@ -3,7 +3,7 @@ import React from 'react'
 
 const Widgets = () => {
   return (
-    <div>
+    <div className='mt-2 px-2'>
         {/* Search */}
         <div className='flex items-center bg-gray-100 space-x-2 p-3 rounded-full'>
             <SearchIcon className='h-5 w-5 text-gray-500'/>
