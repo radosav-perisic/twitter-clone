@@ -1,3 +1,4 @@
+import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
@@ -6,11 +7,10 @@ import Sidebar from "../../components/Sidebar";
 import Feed from "../../components/Feed";
 import Widgets from "../../components/Widgets";
 
-const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+const Home:NextPage = () => {
   return (
-    <>
+    <div className="lg:max-w-6xl mx-auto max-h-screen overflow-hidden">
       <Head>
         <title>Twitter Clone</title>
       </Head>
@@ -23,6 +23,8 @@ export default function Home() {
         {/*Widgets*/}
         <Widgets />
       </main>
-    </>
+    </div>
   );
 }
+
+export default Home;
