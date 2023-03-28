@@ -14,7 +14,7 @@ export default function Home() {
       <Head>
         <title>Twitter Clone</title>
       </Head>
-      <main>
+      <main className="grid grid-cols-9">
         {/*Sidebar*/}
         <Sidebar />
 
@@ -22,7 +22,7 @@ export default function Home() {
         <Feed />
         {/*Widgets*/}
         <Widgets />
-      </main>{" "}
+      </main>
     </>
   );
 }
