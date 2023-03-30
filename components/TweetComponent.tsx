@@ -11,7 +11,7 @@ function TweetComponent({tweet}: Props) {
   return( 
     <div>
         <div>
-            <img src={tweet.profileImg} alt='' />
+            <img className='h-10 w-10 rounded-full object-cover' src={tweet.profileImg} alt='' />
             <div>
               <div className='flex items-center space-x-1'>
                 <p className='mr-1 font-bold'>{tweet.username}</p>
