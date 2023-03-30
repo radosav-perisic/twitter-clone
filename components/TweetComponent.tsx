@@ -1,5 +1,5 @@
-import React from "react";
-import { Tweet } from "../typings";
+import React, { useEffect, useState } from "react";
+import { Tweet, Comment } from "../typings";
 import Timeago from "react-timeago";
 import {
   ChatAlt2Icon,
@@ -7,12 +7,29 @@ import {
   SwitchHorizontalIcon,
   UploadIcon,
 } from "@heroicons/react/outline";
+import { fetchComments } from "../utlis/fetchComments";
+
+
 
 interface Props {
   tweet: Tweet;
 }
 
 function TweetComponent({ tweet }: Props) {
+  const [comments, setComments] = useState<Comment[]>([])
+
+  const refreshComments = async () => {
+    const comments: Comment[] = await fetchComments(tweet._id)
+    setComments(comments);
+  } 
+
+  useEffect(() => {
+    refreshComments();
+  }, [])
+
+  console.log(comments);
+  
+
   return (
     <div className="flex flex-col space-x-3 border-y p-5 border-gray-200">
       <div className="flex space-x-3">
@@ -48,6 +65,7 @@ function TweetComponent({ tweet }: Props) {
       <div className="flex mt-5 justify-between">
         <div className=" flex cursor-pointer items-center text-gray-400 space-x-3">
           <ChatAlt2Icon className="h-5 w-5" />
+
         </div>
 
         <div className="flex cursor-pointer items-center text-gray-400  space-x-3">
