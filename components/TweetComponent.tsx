@@ -9,7 +9,7 @@ interface Props {
 
 function TweetComponent({tweet}: Props) {
   return( 
-    <div>
+    <div className='flex flex-col space-x-3 border-y p-5 border-gray-200'>
         <div className='flex space-x-3'>
             <img className='h-10 w-10 rounded-full object-cover' src={tweet.profileImg} alt='' />
             <div>
