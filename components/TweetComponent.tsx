@@ -14,6 +14,7 @@ function TweetComponent({tweet}: Props) {
             <div>
               <div>
                 <p>{tweet.username}</p>
+                <p>@{tweet.username.replace(/\s+/g, '').toLowerCase()}</p>
               </div>
             </div>
         </div>
