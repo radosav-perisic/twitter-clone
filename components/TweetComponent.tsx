@@ -45,20 +45,20 @@ function TweetComponent({ tweet }: Props) {
           )}
         </div>
       </div>
-      <div>
-        <div className="flex mt-5 justify-between">
+      <div className="flex mt-5 justify-between">
+        <div className=" flex cursor-pointer items-center text-gray-400 space-x-3">
           <ChatAlt2Icon className="h-5 w-5" />
         </div>
 
-        <div className="flex mt-5 justify-between">
+        <div className="flex cursor-pointer items-center text-gray-400  space-x-3">
           <SwitchHorizontalIcon className="h-5 w-5" />
         </div>
 
-        <div className="flex mt-5 justify-between">
+        <div className="flex cursor-pointer items-center text-gray-400  space-x-3">
           <HeartIcon className="h-5 w-5" />
         </div>
 
-        <div className="flex mt-5 justify-between">
+        <div className="flex cursor-pointer items-center text-gray-400  space-x-3">
           <UploadIcon className="h-5 w-5" />
         </div>
       </div>
