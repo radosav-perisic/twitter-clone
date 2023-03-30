@@ -46,19 +46,19 @@ function TweetComponent({ tweet }: Props) {
         </div>
       </div>
       <div>
-        <div>
+        <div className="flex mt-5 justify-between">
           <ChatAlt2Icon className="h-5 w-5" />
         </div>
 
-        <div>
+        <div className="flex mt-5 justify-between">
           <SwitchHorizontalIcon className="h-5 w-5" />
         </div>
 
-        <div>
+        <div className="flex mt-5 justify-between">
           <HeartIcon className="h-5 w-5" />
         </div>
 
-        <div>
+        <div className="flex mt-5 justify-between">
           <UploadIcon className="h-5 w-5" />
         </div>
       </div>
