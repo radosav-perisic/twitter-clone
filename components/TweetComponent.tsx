@@ -22,7 +22,10 @@ function TweetComponent({tweet}: Props) {
                 date={tweet._createdAt}
                 />
               </div>
-
+            
+            <p className='pt-1'>{tweet.text}</p>
+             
+ 
             </div>
         </div>
     </div>
