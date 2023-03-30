@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'twitter-clone',
 
-  projectId: 'oyjm8wt3',
+  projectId: 'k6poqoh8',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],

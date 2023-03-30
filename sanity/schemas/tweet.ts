@@ -12,9 +12,9 @@ export default defineType({
     }),
     defineField({
       name: 'blockTweet',
-      type: 'boolean',
-      description:'ADMIN controls: Toggle if Tweet is deemed inappropriate',
       title: 'Block Tweet',
+      description:'ADMIN controls: Toggle if Tweet is deemed inappropriate',
+      type: 'boolean',
     }),
     defineField({
       name: 'username',
@@ -32,16 +32,4 @@ export default defineType({
       type: 'string',
     })
   ],
-
-  preview: {
-    select: {
-      title: 'title',
-      author: 'author.name',
-      media: 'mainImage',
-    },
-    prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
-    },
-  },
 })
