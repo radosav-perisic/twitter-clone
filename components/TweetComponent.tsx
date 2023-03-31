@@ -89,6 +89,12 @@ function TweetComponent({ tweet }: Props) {
         <div key={comment._id}>  
         <img src={comment.profileImg} className='h-7 2-7 object-cover rounded-full ' alt=""
          />
+         <div>
+         <div>
+          <p>{comment.username}</p>
+          <p>{comment.username.replace(/\s+/g, '').toLowerCase()}·</p>
+         </div>
+         </div>
         </div>
         ))}
         </div>
