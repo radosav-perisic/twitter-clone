@@ -94,6 +94,11 @@ function TweetComponent({ tweet }: Props) {
           <p>{comment.username}</p>
           <p>{comment.username.replace(/\s+/g, '').toLowerCase()}·</p>
          </div>
+
+         <Timeago 
+           className="text-sm text-gray-500"
+           date={comment._createdAt}
+          />
          </div>
         </div>
         ))}
