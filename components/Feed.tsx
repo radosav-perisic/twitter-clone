@@ -9,6 +9,8 @@ interface Props {
 }
 
 const Feed = ({tweets}: Props) => {
+    console.log(tweets);
+     
   return (
     <div className='col-span-7 lg:col-span-5 border-x'>
     <div className='flex items-center justify-between'>

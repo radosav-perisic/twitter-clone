@@ -80,6 +80,19 @@ function TweetComponent({ tweet }: Props) {
           <UploadIcon className="h-5 w-5" />
         </div>
       </div>
+
+    {/* Comments Logic */}
+
+      {comments?.length > 0 && (
+        <div>
+          {comments.map((comment)=> (
+        <div key={comment._id}>  
+        <img src={comment.profileImg} className='h-7 2-7 object-cover rounded-full ' alt=""
+         />
+        </div>
+        ))}
+        </div>
+      )}
     </div>
   );
 }
