@@ -62,6 +62,7 @@ function TweetComponent({ tweet }: Props) {
       <div className="flex mt-5 justify-between">
         <div className=" flex cursor-pointer items-center text-gray-400 space-x-3">
           <ChatAlt2Icon className="h-5 w-5" />
+          <p>{comments.length}</p>
         </div>
 
         <div className="flex cursor-pointer items-center text-gray-400  space-x-3">
@@ -82,7 +83,7 @@ function TweetComponent({ tweet }: Props) {
       {comments?.length > 0 && (
         <div className="my-2 mt-5 max-h-44 space-y-5 overflow-y-scroll border-t border-gray-200 p-5">
           {comments.map((comment) => (
-            <div key={comment._id}  className='relative flex space-x-2'>
+            <div key={comment._id}  className='relative   flex space-x-2'>
               <hr className="absolute left-5 top-10 h-8 border-x border-twitter/30"/>
               <img
                 src={comment.profileImg}
