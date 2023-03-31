@@ -80,12 +80,13 @@ function TweetComponent({ tweet }: Props) {
       {/* Comments Logic */}
 
       {comments?.length > 0 && (
-        <div>
+        <div className="my-2 mt-5 max-h-44 space-y-5 overflow-y-scroll border-t border-gray-200 p-5">
           {comments.map((comment) => (
-            <div key={comment._id} >
+            <div key={comment._id}  className='relative flex space-x-2'>
+              <hr className="absolute left-5 top-10 h-8 border-x border-twitter/30"/>
               <img
                 src={comment.profileImg}
-                className="h-7 2-7 object-cover rounded-full "
+                className="h-7 mt-2 w-7 object-cover rounded-full "
                 alt=""
               />
               <div>
@@ -100,8 +101,8 @@ function TweetComponent({ tweet }: Props) {
                     date={comment._createdAt}
                   />
                 </div>
-              </div>
               <p>{comment.comment}</p>
+              </div>
             </div>
           ))}
         </div>
