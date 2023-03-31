@@ -9,26 +9,23 @@ import {
 } from "@heroicons/react/outline";
 import { fetchComments } from "../utlis/fetchComments";
 
-
-
 interface Props {
   tweet: Tweet;
 }
 
 function TweetComponent({ tweet }: Props) {
-  const [comments, setComments] = useState<Comment[]>([])
+  const [comments, setComments] = useState<Comment[]>([]);
 
   const refreshComments = async () => {
-    const comments: Comment[] = await fetchComments(tweet._id)
+    const comments: Comment[] = await fetchComments(tweet._id);
     setComments(comments);
-  } 
+  };
 
   useEffect(() => {
     refreshComments();
-  }, [])
+  }, []);
 
   console.log(comments);
-  
 
   return (
     <div className="flex flex-col space-x-3 border-y p-5 border-gray-200">
@@ -65,7 +62,6 @@ function TweetComponent({ tweet }: Props) {
       <div className="flex mt-5 justify-between">
         <div className=" flex cursor-pointer items-center text-gray-400 space-x-3">
           <ChatAlt2Icon className="h-5 w-5" />
-
         </div>
 
         <div className="flex cursor-pointer items-center text-gray-400  space-x-3">
@@ -81,28 +77,33 @@ function TweetComponent({ tweet }: Props) {
         </div>
       </div>
 
-    {/* Comments Logic */}
+      {/* Comments Logic */}
 
       {comments?.length > 0 && (
         <div>
-          {comments.map((comment)=> (
-        <div key={comment._id}>  
-        <img src={comment.profileImg} className='h-7 2-7 object-cover rounded-full ' alt=""
-         />
-         <div>
-         <div>
-          <p>{comment.username}</p>
-          <p>{comment.username.replace(/\s+/g, '').toLowerCase()}·</p>
-         </div>
+          {comments.map((comment) => (
+            <div key={comment._id} >
+              <img
+                src={comment.profileImg}
+                className="h-7 2-7 object-cover rounded-full "
+                alt=""
+              />
+              <div>
+                <div className="flex items-center space-x-1 ">
+                  <p className="mr-1 font-bold">{comment.username}</p>
+                  <p className="hidden  text-sm text-gray-500 lg:inline">
+                    {comment.username.replace(/\s+/g, "").toLowerCase()}·
+                  </p>
 
-         <Timeago 
-           className="text-sm text-gray-500"
-           date={comment._createdAt}
-          />
-         </div>
-         <p>{comment.comment}</p>
-        </div>
-        ))}
+                  <Timeago
+                    className="text-sm text-gray-500"
+                    date={comment._createdAt}
+                  />
+                </div>
+              </div>
+              <p>{comment.comment}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>
