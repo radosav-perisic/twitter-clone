@@ -100,6 +100,7 @@ function TweetComponent({ tweet }: Props) {
            date={comment._createdAt}
           />
          </div>
+         <p>{comment.comment}</p>
         </div>
         ))}
         </div>
