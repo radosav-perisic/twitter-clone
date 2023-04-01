@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 const Tweetbox = () => {
    const [input, setInput] = useState<string>('')
    const{ data : session } = useSession()
+   const [imageUrlBoxIsOpen, setImageUrlBoxIsOpen] = useState<boolean>(false)
    
 
   return (
@@ -27,7 +28,7 @@ const Tweetbox = () => {
           <div className="flex items-center">
             <div className="flex space-x-2 text-twitter flex-1">
               {/* Icons */}
-              <PhotographIcon className="h-5 w-5 hover:cursor-pointer transition-transform duration-150 ease out hover:scale-150" />
+              <PhotographIcon onClick={() => setImageUrlBoxIsOpen(!imageUrlBoxIsOpen)} className="h-5 w-5 hover:cursor-pointer transition-transform duration-150 ease out hover:scale-150" />
               <SearchCircleIcon className="h-5 w-5 hover:cursor-pointer transition-transform duration-150 ease out hover:scale-150" />
               <EmojiHappyIcon className="h-5 w-5 hover:cursor-pointer transition-transform duration-150 ease out hover:scale-150" />
               <CalendarIcon className="h-5 w-5 hover:cursor-pointer transition-transform duration-150 ease out hover:scale-150" />
@@ -35,6 +36,13 @@ const Tweetbox = () => {
             </div>
             <button disabled={!input || !session} className="bg-twitter px-5 py-2 font-bold text-white rounded-full disabled:opacity-40">Tweet</button>
           </div>
+          {imageUrlBoxIsOpen && (
+            <form className="mt-5 flex rounded-lg bg-twitter/80 py-2 px-4">
+              <input className="flex-1 bg-transparent p-2 text-white outline-none placeholder:text-white" type='text'
+              placeholder="Enter Image URL..."/>
+              <button className="font-bold text-white">Add Image</button>
+        </form>
+        )}
         </form>
       </div>
     </div>
