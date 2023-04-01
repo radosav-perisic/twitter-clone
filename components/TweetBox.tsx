@@ -33,7 +33,7 @@ const Tweetbox = () => {
               <CalendarIcon className="h-5 w-5 hover:cursor-pointer transition-transform duration-150 ease out hover:scale-150" />
               <LocationMarkerIcon className="h-5 w-5 hover:cursor-pointer transition-transform duration-150 ease out hover:scale-150" />
             </div>
-            <button disabled={!input} className="bg-twitter px-5 py-2 font-bold text-white rounded-full disabled:opacity-40">Tweet</button>
+            <button disabled={!input || !session} className="bg-twitter px-5 py-2 font-bold text-white rounded-full disabled:opacity-40">Tweet</button>
           </div>
         </form>
       </div>
