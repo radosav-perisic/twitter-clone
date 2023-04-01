@@ -3,11 +3,10 @@ import TwitterProvider from 'next-auth/providers/twitter'
 
 export default NextAuth({
   providers: [
-    // OAuth authentication providers...
     TwitterProvider({
       clientId: process.env.TWITTER_CLIENT_ID,
       clientSecret: process.env.TWITTER_CLIENT_SECRET,
-      version:'2.0'
+      version:'2.0',
     }),
-  ]
+  ],
 })
