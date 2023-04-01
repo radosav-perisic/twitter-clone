@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { Dispatch, useRef, useState } from "react";
 import {
   SearchCircleIcon,
   EmojiHappyIcon,
@@ -7,8 +7,15 @@ import {
   PhotographIcon,
 } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
+import { Tweet, TweetBody } from "../typings";
+import toast from "react-hot-toast";
+import { fetchTweets } from "../utlis/fetchTweets";
 
-const Tweetbox = () => {
+interface Props {
+  setTweets: Dispatch<React.SetStateAction<Tweet[]>>
+}
+
+const Tweetbox = ({setTweets}: Props) => {
   const [input, setInput] = useState<string>("");
   const [image, setImage] = useState<string>("");
 
@@ -28,6 +35,41 @@ const Tweetbox = () => {
     imageInputRef.current.value = "";
     setImageUrlBoxIsOpen(false);
   };
+
+  const postTweet = async ()=> {
+    const tweetInfo: TweetBody = {
+       text:input,
+       username: session?.user?.name || 'Unknown User',
+       profileImg: session?.user?.image || 'https://links.papareact.com//gll',
+       image: image,
+    }
+
+    const result = await fetch(`/api/addTweet` ,{
+      body: JSON.stringify(tweetInfo),
+      method: 'POST'
+    })
+
+    const json = await result.json();
+
+    const newTweets = await fetchTweets();
+    setTweets(newTweets)
+
+    toast('Tweet Posted', {
+      icon: '✔️'
+    })
+    return json
+  }
+
+  const submitHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
+
+    postTweet();
+
+    setInput('')
+    setImage('')
+
+    setImageUrlBoxIsOpen(false)
+  }
 
   return (
     <div className="flex space-x-2 p-5">
@@ -59,6 +101,7 @@ const Tweetbox = () => {
               <LocationMarkerIcon className="h-5 w-5 hover:cursor-pointer transition-transform duration-150 ease out hover:scale-150" />
             </div>
             <button
+              onClick={submitHandler}
               disabled={!input || !session}
               className="bg-twitter px-5 py-2 font-bold text-white rounded-full disabled:opacity-40"
             >
