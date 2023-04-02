@@ -8,6 +8,7 @@ import {
   UploadIcon,
 } from "@heroicons/react/outline";
 import { fetchComments } from "../utlis/fetchComments";
+import { useSession } from "next-auth/react";
 
 interface Props {
   tweet: Tweet;
@@ -15,6 +16,10 @@ interface Props {
 
 function TweetComponent({ tweet }: Props) {
   const [comments, setComments] = useState<Comment[]>([]);
+  const [commentsBoxIsVisible, setCommentsBoxIsVisible] =
+    useState<boolean>(false);
+  const [input, setInput] = useState<string>("");
+  const {data: session} = useSession()
 
   const refreshComments = async () => {
     const comments: Comment[] = await fetchComments(tweet._id);
@@ -24,6 +29,10 @@ function TweetComponent({ tweet }: Props) {
   useEffect(() => {
     refreshComments();
   }, []);
+
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+   e.preventDefault()
+  }
 
   console.log(comments);
 
@@ -60,7 +69,10 @@ function TweetComponent({ tweet }: Props) {
         </div>
       </div>
       <div className="flex mt-5 justify-between">
-        <div className=" flex cursor-pointer items-center text-gray-400 space-x-3">
+        <div
+          onClick={() => session && setCommentsBoxIsVisible(!commentsBoxIsVisible)}
+          className=" flex cursor-pointer items-center text-gray-400 space-x-3"
+        >
           <ChatAlt2Icon className="h-5 w-5" />
           <p>{comments.length}</p>
         </div>
@@ -75,16 +87,29 @@ function TweetComponent({ tweet }: Props) {
 
         <div className="flex cursor-pointer items-center text-gray-400  space-x-3">
           <UploadIcon className="h-5 w-5" />
-        </div>
+        </div> 
       </div>
 
       {/* Comments Logic */}
 
+      {commentsBoxIsVisible && (
+        <form  onSubmit={submitHandler}  className="mt-3 flex space-x-3 ">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="flex-1 rounded-lg bg-gray-200 p-2 outline-none"
+            type="text"
+            placeholder="Write a comment..."
+          />
+          <button disabled={!input}className="text-twitter disable:text-gray-200">Post</button>
+        </form>
+      )}
+
       {comments?.length > 0 && (
         <div className="my-2 mt-5 max-h-44 space-y-5 overflow-y-scroll border-t border-gray-200 p-5">
           {comments.map((comment) => (
-            <div key={comment._id}  className='relative   flex space-x-2'>
-              <hr className="absolute left-5 top-10 h-8 border-x border-twitter/30"/>
+            <div key={comment._id} className="relative   flex space-x-2">
+              <hr className="absolute left-5 top-10 h-8 border-x border-twitter/30" />
               <img
                 src={comment.profileImg}
                 className="h-7 mt-2 w-7 object-cover rounded-full "
@@ -102,7 +127,7 @@ function TweetComponent({ tweet }: Props) {
                     date={comment._createdAt}
                   />
                 </div>
-              <p>{comment.comment}</p>
+                <p>{comment.comment}</p>
               </div>
             </div>
           ))}
