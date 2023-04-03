@@ -29,7 +29,7 @@ function Tweet({ tweet }: Props) {
 
   useEffect(() => {
     refreshComments();
-  }, []);
+  }, [refreshComments]);
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
