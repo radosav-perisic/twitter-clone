@@ -17,6 +17,7 @@ const Home = ({tweets}: Props) => {
   return (
     <div className="lg:max-w-6xl mx-auto max-h-screen overflow-hidden">
       <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
         <title>Twitter Clone</title>
       </Head>
       <Toaster />
