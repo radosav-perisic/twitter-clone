@@ -1,4 +1,4 @@
-import React, { Dispatch, useRef, useState } from "react";
+import { Dispatch, useRef, useState } from "react";
 import {
   SearchCircleIcon,
   EmojiHappyIcon,
@@ -60,7 +60,7 @@ const Tweetbox = ({setTweets}: Props) => {
     return json
   }
 
-  const submitHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const submitHandler = (e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     e.preventDefault()
 
     postTweet();
